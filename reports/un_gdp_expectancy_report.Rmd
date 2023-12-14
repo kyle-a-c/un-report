@@ -9,19 +9,60 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r packages}
+```{r packages, include = FALSE}
 library(tidyverse)
 ```
 
+# Introduction
+
 This report was prepared to the attention of the United Nations.
 
-```{r}
+```{r data, include = FALSE}
 gapminder_1997 <- read_csv("gapminder_1997.csv")
 ```
-```{r}
+```{r gdp_lifeexp_1997, echo=FALSE}
 ggplot(data = gapminder_1997) +
   aes(x = gdpPercap, y = lifeExp, color = continent) +
   labs(x = "GDP Per Capita", y = "Life Expectancy", title = "Do people live longer?", size = "Population in Millions")+
   geom_point()
 ```
+
+## Summary Tables
+
+```{r}
+nCountries <- gapminder_1997 %>% 
+  select(country) %>% 
+  n_distinct()
+
+minGDP <- gapminder_1997 %>% 
+  summarise(round(min(gdpPercap))) %>% 
+  pull()
+
+maxGDP <-  gapminder_1997 %>% 
+  summarise(round(max(gdpPercap))) %>% 
+  pull()
+```
+
+
+
+|Summary of Data|
+|--------------|--------------|
+|Number of Countries|`r nCountries`|
+|Minimum GDP Per Capita|`r minGDP`|
+|Maximum GDP Per Capita|`r maxGDP`|
+
+```{r}
+library(knitr) #need to load library knitr for use of kable function
+
+gapminder_1997 %>% 
+  filter(continent == "Oceania") %>%
+  select(country, pop, gdpPercap) %>% 
+  rename("Population" = pop, "GDP Per Capita" = gdpPercap) %>% 
+  kable()
+```
+
+### Header 3 test
+
+
+
 
