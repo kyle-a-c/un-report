@@ -9,3 +9,29 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r package, include=false}
+library(tidyverse)
+```
+
+# Introduction
+
+Investigating population over time
+
+```{r}
+gapminder_data <- read_csv("../gapminder_data.csv")
+
+```
+
+```{r }
+ggplot(data = gapminder_data)+
+  aes(x = year, y = pop)+
+  geom_point()+
+  facet_wrap(vars(continent))
+```
+
+```{r}
+Outliers <- gapminder_data %>% 
+  select
+
+```
+
