@@ -44,6 +44,7 @@ ggplot(data = gapminder_1997) +
   labs(size = "Population (in millions)") +
   aes(shape = continent)
 
+
 gapminder_1997 <- read_csv(file='gapminder_1997.csv')
 ggplot(data = gapminder_1997) +
   aes(x = gdpPercap, y = lifeExp, color = continent, size = pop/1000000,
@@ -53,6 +54,8 @@ ggplot(data = gapminder_1997) +
   labs(x = "GDP Per Capita", y = "Life Expectancy",
        title = "Does GDP Affect Life Expectancy?", 
        size = "Population (in millions)")
+ggsave("figures/gdpPercap_lifeExp.png:")
+
 
 gapminder_data <- read_csv("gapminder_data.csv")
 dim(gapminder_data)
@@ -64,4 +67,7 @@ gapminder_data <- read_csv(file='gapminder_data.csv')
 ggplot(data = gapminder_data) +
   aes(x = year, y = lifeExp, color = continent) +
   geom_point()
+
+
+ggsave("figures/gdpPercap_lifeExp.png")
   
